@@ -2,38 +2,140 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "What does Big-O notation represent in algorithm analysis?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "The exact running time in seconds",
+        "b": "The upper bound (worst-case) growth rate of an algorithm",
+        "c": "The memory usage of an algorithm",
+        "d": "The number of lines of code"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Big-O does not measure exact time, it measures growth rate.",
+        "b": "Correct! Big-O notation describes how the running time grows as input size increases, focusing on the worst case.",
+        "c": "Big-O can describe space complexity, but primarily refers to time complexity.",
+        "d": "Lines of code do not determine time complexity."
       },
-      "correctAnswer": "a",
+      "correctAnswer": "b",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "What is the time complexity of Binary Search?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "O(n)",
+        "b": "O(n²)",
+        "c": "O(log n)",
+        "d": "O(1)"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "O(n) is the complexity of Linear Search, not Binary Search.",
+        "b": "O(n²) is quadratic complexity, used in algorithms like Bubble Sort.",
+        "c": "Correct! Binary Search halves the search space with each comparison, giving O(log n).",
+        "d": "O(1) is constant time, Binary Search requires multiple comparisons."
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
+    },
+    {
+      "question": "Which sorting algorithm has O(n²) time complexity in the average case?",
+      "answers": {
+        "a": "Quick Sort",
+        "b": "Merge Sort",
+        "c": "Bubble Sort",
+        "d": "Heap Sort"
+      },
+      "explanations": {
+        "a": "Quick Sort has O(n log n) average case complexity.",
+        "b": "Merge Sort has O(n log n) complexity in all cases.",
+        "c": "Correct! Bubble Sort uses two nested loops, resulting in O(n²) complexity.",
+        "d": "Heap Sort has O(n log n) complexity."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the time complexity of multiplying two n×n matrices using the standard algorithm?",
+      "answers": {
+        "a": "O(n)",
+        "b": "O(n²)",
+        "c": "O(n³)",
+        "d": "O(2ⁿ)"
+      },
+      "explanations": {
+        "a": "O(n) is linear, matrix multiplication requires more operations.",
+        "b": "O(n²) is the complexity of matrix addition, not multiplication.",
+        "c": "Correct! Standard matrix multiplication uses three nested loops, giving O(n³).",
+        "d": "O(2ⁿ) is exponential, used in subset generation problems."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "How many subsets can be generated from a set of n elements?",
+      "answers": {
+        "a": "n",
+        "b": "n²",
+        "c": "2ⁿ",
+        "d": "n!"
+      },
+      "explanations": {
+        "a": "n is just the number of elements, not subsets.",
+        "b": "n² is quadratic, not related to subset count.",
+        "c": "Correct! Each element can either be included or excluded, giving 2ⁿ subsets.",
+        "d": "n! is the number of permutations, not subsets."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which of the following has the fastest growth rate?",
+      "answers": {
+        "a": "O(n log n)",
+        "b": "O(n²)",
+        "c": "O(2ⁿ)",
+        "d": "O(n³)"
+      },
+      "explanations": {
+        "a": "O(n log n) grows slower than polynomial and exponential.",
+        "b": "O(n²) is polynomial, slower than exponential.",
+        "c": "Correct! Exponential O(2ⁿ) grows faster than any polynomial complexity.",
+        "d": "O(n³) is polynomial, still slower than exponential."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is a prerequisite for Binary Search to work correctly?",
+      "answers": {
+        "a": "The array must be unsorted",
+        "b": "The array must be sorted",
+        "c": "The array must have unique elements",
+        "d": "The array must have even number of elements"
+      },
+      "explanations": {
+        "a": "Binary Search requires a sorted array to work.",
+        "b": "Correct! Binary Search divides the array based on comparison with middle element, which only works if the array is sorted.",
+        "c": "Duplicate elements are allowed in Binary Search.",
+        "d": "The number of elements does not need to be even."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the time complexity of generating all permutations of n elements?",
+      "answers": {
+        "a": "O(n)",
+        "b": "O(n²)",
+        "c": "O(2ⁿ)",
+        "d": "O(n!)"
+      },
+      "explanations": {
+        "a": "O(n) is linear, permutations require much more work.",
+        "b": "O(n²) is quadratic, not enough for permutations.",
+        "c": "O(2ⁿ) is for subset generation, not permutations.",
+        "d": "Correct! There are n! (n factorial) permutations of n distinct elements."
+      },
+      "correctAnswer": "d",
+      "difficulty": "intermediate"
     }
   ]
 }

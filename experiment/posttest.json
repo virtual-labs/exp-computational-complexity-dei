@@ -2,38 +2,140 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "In the simulation, when comparing Binary Search and Linear Search for N = 10⁶, which algorithm shows significantly faster execution time?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Linear Search",
+        "b": "Binary Search",
+        "c": "Both have similar execution times",
+        "d": "Neither can handle N = 10⁶"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Linear Search takes O(n) time, which is much slower for large N.",
+        "b": "Correct! Binary Search with O(log n) completes in about 20 comparisons for N = 10⁶, while Linear Search needs up to 10⁶ comparisons.",
+        "c": "The difference is dramatic - logarithmic vs linear growth.",
+        "d": "Both algorithms can handle large N, but with very different performance."
       },
-      "correctAnswer": "a",
+      "correctAnswer": "b",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Based on the simulation graph, which sorting algorithm's execution time grows faster as input size increases?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Quick Sort",
+        "b": "Bubble Sort",
+        "c": "Both grow at the same rate",
+        "d": "Quick Sort grows faster"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Quick Sort has O(n log n) complexity, which grows slower.",
+        "b": "Correct! Bubble Sort's O(n²) complexity makes its curve steeper than Quick Sort's O(n log n) curve.",
+        "c": "The growth rates are different - O(n²) vs O(n log n).",
+        "d": "Quick Sort actually grows slower due to its better time complexity."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "In the simulation, why does Matrix Multiplication have a lower maximum N limit compared to Matrix Addition?",
+      "answers": {
+        "a": "Matrix Multiplication uses less memory",
+        "b": "Matrix Addition is O(n³) while Multiplication is O(n²)",
+        "c": "Matrix Multiplication is O(n³) while Addition is O(n²)",
+        "d": "Both have the same time complexity"
+      },
+      "explanations": {
+        "a": "Memory usage is similar, but time complexity differs.",
+        "b": "This is backwards - Addition is O(n²), Multiplication is O(n³).",
+        "c": "Correct! Matrix Multiplication requires three nested loops O(n³), making it much slower than Addition's O(n²).",
+        "d": "Their complexities are different: O(n²) vs O(n³)."
       },
       "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "When running Subset Generation in the simulation, why is the maximum N limited to around 22?",
+      "answers": {
+        "a": "The algorithm is poorly implemented",
+        "b": "Because 2²² ≈ 4 million subsets, which takes significant time",
+        "c": "Memory limitations only",
+        "d": "It's an arbitrary limitation"
+      },
+      "explanations": {
+        "a": "The implementation is correct, the complexity is inherently exponential.",
+        "b": "Correct! With O(2ⁿ) complexity, even N = 22 generates over 4 million subsets, making larger N impractical.",
+        "c": "Time is the primary constraint due to exponential growth.",
+        "d": "The limit is based on practical execution time constraints."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What does the simulation's execution time table help you understand?",
+      "answers": {
+        "a": "Only the fastest algorithm",
+        "b": "How execution time changes for different input sizes across algorithms",
+        "c": "The memory usage of each algorithm",
+        "d": "The number of lines of code in each algorithm"
+      },
+      "explanations": {
+        "a": "The table shows more than just the fastest algorithm.",
+        "b": "Correct! The table displays execution times for multiple N values, allowing you to observe how different algorithms scale.",
+        "c": "Memory usage is not displayed in the table.",
+        "d": "Code length is not shown in the simulation."
+      },
+      "correctAnswer": "b",
       "difficulty": "beginner"
+    },
+    {
+      "question": "In the simulation, Permutation Generation has an even lower N limit than Subset Generation. Why?",
+      "answers": {
+        "a": "Permutations are easier to generate",
+        "b": "O(n!) grows faster than O(2ⁿ)",
+        "c": "O(2ⁿ) grows faster than O(n!)",
+        "d": "Both have the same complexity"
+      },
+      "explanations": {
+        "a": "Permutations are actually harder due to factorial complexity.",
+        "b": "Correct! For n = 10, n! = 3,628,800 while 2ⁿ = 1,024. Factorial grows much faster than exponential.",
+        "c": "Factorial O(n!) grows faster than exponential O(2ⁿ) for practical values of n.",
+        "d": "O(n!) and O(2ⁿ) are different, with factorial being worse."
+      },
+      "correctAnswer": "b",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "What is the purpose of the 'Max Simulation Time' setting in the simulation?",
+      "answers": {
+        "a": "To make algorithms run faster",
+        "b": "To limit how long each algorithm can run before stopping",
+        "c": "To increase the accuracy of results",
+        "d": "To change the algorithm implementation"
+      },
+      "explanations": {
+        "a": "It doesn't speed up algorithms, it limits their execution time.",
+        "b": "Correct! It prevents the browser from freezing by stopping algorithms that take too long.",
+        "c": "It's for time management, not accuracy improvement.",
+        "d": "The algorithm implementations remain the same."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "From the simulation graph, why might curves appear distorted when comparing algorithms with very different complexities?",
+      "answers": {
+        "a": "The graph library has bugs",
+        "b": "The scale must accommodate vastly different execution times",
+        "c": "The algorithms are incorrectly implemented",
+        "d": "The browser is too slow"
+      },
+      "explanations": {
+        "a": "The graph library works correctly.",
+        "b": "Correct! When comparing O(log n) with O(n²), the execution times differ by orders of magnitude, making visual comparison difficult.",
+        "c": "Implementations are correct, the visual issue is due to scale differences.",
+        "d": "Browser speed doesn't affect graph appearance."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
     }
   ]
 }

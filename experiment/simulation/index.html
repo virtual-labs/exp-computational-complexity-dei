@@ -1,13 +1,167 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
-		<!-- Your code goes here-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>Time Complexities of Algorithms</title>
+  </head>
+  <body>
+    <div id="mainContainer">
+      <div id="container">
+        <div id="header">
+          <h2>Time Complexities of Algorithms</h2>
+        </div>
 
-	<!-- Add JS at the bottom of HTML file --> 
-        <script src="./js/main.js"></script>
-</body>
+        <div id="simulation">
+          <div id="leftPaneWrapper">
+          <div id="leftPane">
+            <div>
+                
+            
+              <button id='clear' onclick="reset()">Reset</button>
+
+            </div>
+
+            <div id="available-algorithms">
+
+              <!-- 1. Linear / Logarithmic Algorithms -->
+              <div class="algo-group" id="algo-group-linear">
+                <p><strong>1. Linear / Logarithmic Time Algorithms</strong></p>
+                <button id="a1" class="tip" data-tip="Time Complexity: O(log n)" onclick="handleAddAlgorithm(event)">+ Binary Search</button>
+                <button id="a2" class="tip" data-tip="Time Complexity: O(n)" onclick="handleAddAlgorithm(event)">+ Linear Search</button>
+              </div>
+
+              <!-- 2. Polynomial Algorithms -->
+              <div class="algo-group" id="algo-group-polynomial">
+                <p><strong>2. Polynomial Time Algorithms </strong></p>
+
+                <!-- 2.1 Sorting -->
+                <div class="sub-group" id="algo-sorting">
+                  <p><em>2.1 Sorting Algorithms</em></p>
+                  <button id="a3" class="tip" data-tip="Avg. Time Complexity: O(nlogn)" onclick="handleAddAlgorithm(event)">+ Quick Sort</button>
+                  <button id="a4" class="tip" data-tip="Time Complexity: O(n²)" onclick="handleAddAlgorithm(event)">+ Bubble Sort</button>
+                </div>
+
+                <!-- 2.2 Matrix Operations -->
+                <div class="sub-group" id="algo-matrix">
+                  <p><em>2.2 Matrix Operations</em></p>
+                  <button id="a5" class="tip" data-tip="Time Complexity: O(n²)" onclick="handleAddAlgorithm(event)">+ Matrix Addition</button>
+                  <button id="a6" class="tip" data-tip="Time Complexity: O(n³)" onclick="handleAddAlgorithm(event)">+ Matrix Multiplication</button>
+                </div>
+              </div>
+
+              <!-- 3. Exponential / Factorial Algorithms -->
+              <div class="algo-group" id="algo-group-exponential">
+                <p><strong>3. Exponential / Factorial Algorithms</strong></p>
+                <button id="a7" class="tip" data-tip="Time Complexity: O(2ⁿ)" onclick="handleAddAlgorithm(event)">+ Subset Generation</button>
+                <button id="a8" class="tip" data-tip="Time Complexity: O(n!)" onclick="handleAddAlgorithm(event)">+ Permutations Generation</button>
+              </div>
+
+              <div class="algo-group" id="algo-group-custom">
+                <p><strong>4. Custom Algorithms</strong></p>
+                <div id="custom-div">
+                <button id="a11" class="tip" data-tip="Time Complexity: O(log n)" onclick="handleAddCustomAlgorithm(event)">+ Binary Search</button>
+                <button id="a21" class="tip" data-tip="Time Complexity: O(n)" onclick="handleAddCustomAlgorithm(event)">+ Linear Search</button>
+                <button id="a31" class="tip" data-tip="Avg. Time Complexity: O(nlogn)" onclick="handleAddCustomAlgorithm(event)">+ Quick Sort</button>
+                <button id="a41" class="tip" data-tip="Time Complexity: O(n²)" onclick="handleAddCustomAlgorithm(event)">+ Bubble Sort</button>
+                <button id="a51" class="tip" data-tip="Time Complexity: O(n²)" onclick="handleAddCustomAlgorithm(event)">+ Matrix Addition</button>
+                <button id="a61" class="tip" data-tip="Time Complexity: O(n³)" onclick="handleAddCustomAlgorithm(event)">+ Matrix Multiplication</button>
+                <button id="a71" class="tip" data-tip="Time Complexity: O(2ⁿ)" onclick="handleAddCustomAlgorithm(event)">+ Subset Generation</button>
+                <button id="a81" class="tip" data-tip="Time Complexity: O(n!)" onclick="handleAddCustomAlgorithm(event)">+ Permutations Generation</button>
+                </div>
+              </div>
+
+            </div>
+
+              <p>Selected Algorithms: <span id="selected-len">0</span></p>
+              <p id="selected-algorithms"></p>
+
+
+
+            <div id="n-selector">
+            <p>Max value of N: <span id='n-value'></span></p>
+           
+            <div id="radio-div">
+            <label id="n10"><input type="radio" name="nValue" value="10"> 10</label>
+            <label id="n15"><input type="radio" name="nValue" value="15"> 15</label>
+            <label id="n22"><input type="radio" name="nValue" value="22"> 22</label>
+            <label id="n200"><input type="radio" name="nValue" value="200"> 200</label>
+            <label id="n300"><input type="radio" name="nValue" value="300"> 300</label>
+            <label id="n500"><input type="radio" name="nValue" value="500"> 500</label>
+            <label id="n1000"><input type="radio" name="nValue" value="1000"> 1000</label>
+            <label id="n1500"><input type="radio" name="nValue" value="1500"> 1500</label>
+            <label id="n3000"><input type="radio" name="nValue" value="3000"> 3000</label>
+            <label id="n8000"><input type="radio" name="nValue" value="8000"> 8000</label>
+            <label id="n10000"><input type="radio" name="nValue" value="10000"> 10000</label>
+            <label id="n100000"><input type="radio" name="nValue" value="100000" > 10<sup>5</sup></label>
+            <label id="n200000"><input type="radio" name="nValue" value="200000"> 2 × 10<sup>5</sup></label>
+            <label id="n1000000"><input type="radio" name="nValue" value="1000000"> 10<sup>6</sup></label>
+            <label id="n10000000"><input type="radio" name="nValue" value="10000000"> 10<sup>7</sup></label>
+            </div>
+
+
+            </div>
+
+            <div id="max-time">
+                <label>Max Simulation Time (sec)</label>
+
+                <select id="select-time" onchange="handleMaxTime(this.value)">
+                  <option value=5>5</option>
+                  <option value=10>10</option>
+                  <option value=15>15</option>
+                  <option value=20>20</option>
+                </select>
+            </div>
+
+
+            <label id="lock-div"> <input id='lock-button' type="checkbox"/>
+              Lock Values</label>
+             
+              <div id="run-div">
+              <button disabled hidden id="run" onclick="runAlgo()"> Generate Inputs and Run Algorithm</button>
+              </div>
+
+
+
+        
+          </div>
+          
+          <div id="complexity-info" hidden></div>
+          </div>
+          
+          <div id="middlePane">
+            <p  hidden id="status-heading">Status : <span id="status">Click on Generate Inputs</span></p>
+            
+            <p hidden id="table-heading">Execution Time (ms) of Each Algorithm for Different n</p>
+
+            <div class="table-container">
+            <table id="results">
+            </table>
+            </div>
+            
+            <div id="steps-div">
+
+            
+            <button id ='prev-btn' onclick="handlePrev()">Previous Step </button>
+            <button id='next-btn' onclick="handleNext()">Next Step </button>
+             </div>
+            
+
+
+          </div>
+
+          <div id="rightPane">
+            <canvas width =380 height = 350 id="graph-canvas"></canvas>
+            <p id="info-text">Graph will be shown here</p>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    
+    <script src="./lib/chart.umd.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
