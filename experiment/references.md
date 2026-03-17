@@ -1,2 +1,1 @@
-### Geeks for Geeks
-https://www.geeksforgeeks.org/dsa/time-complexities-of-all-sorting-algorithms/
+1. Introduction to Algorithms by Thomas H. Cormen & Charles E. Leiserson

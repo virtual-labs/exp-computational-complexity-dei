@@ -3,11 +3,57 @@
 
 **Time complexity** measures how the running time of an algorithm increases as the input size (n) grows. It helps us compare algorithms and predict their performance for large inputs.
 
-We express time complexity using **Big-O notation**, which describes the upper bound (worst-case) growth rate.
+For large inputs, we study growth using **asymptotic analysis**.
 
 ---
 
-## 2. Common Time Complexities
+## 2. Asymptotic Analysis
+
+In asymptotic analysis, we focus on how a function grows as n → ∞.
+
+We **ignore**:
+1. Constant factors (e.g., 2n and 100n grow the same way)
+2. Lower-order terms (e.g., n² + n + 1 behaves like n² for large n)
+
+This gives machine-independent comparisons between algorithms.
+
+### 2.1 Big-O, Big-Ω, and Big-Θ
+
+Let T(n) be running time and f(n) be a reference growth function.
+
+- **Big-O**: T(n) = O(f(n)) means asymptotic **upper bound**.
+    There exist constants c > 0 and n₀ such that:
+    0 ≤ T(n) ≤ c·f(n), for all n ≥ n₀
+
+- **Big-Ω**: T(n) = Ω(f(n)) means asymptotic **lower bound**.
+    There exist constants c > 0 and n₀ such that:
+    0 ≤ c·f(n) ≤ T(n), for all n ≥ n₀
+
+- **Big-Θ**: T(n) = Θ(f(n)) means **tight bound** (both upper and lower).
+    There exist constants c₁, c₂ > 0 and n₀ such that:
+    0 ≤ c₁f(n) ≤ T(n) ≤ c₂f(n), for all n ≥ n₀
+
+So, Θ(f(n)) precisely captures the asymptotic order, while O(f(n)) only gives an upper limit.
+
+### 2.2 Little-o and Little-ω (Strict Bounds)
+
+- **Little-o**: T(n) = o(f(n)) means T(n) grows strictly slower than f(n).
+    Equivalent limit form:
+    lim(n→∞) T(n)/f(n) = 0
+
+- **Little-ω**: T(n) = ω(f(n)) means T(n) grows strictly faster than f(n).
+    Equivalent limit form:
+    lim(n→∞) T(n)/f(n) = ∞
+
+### 2.3 Example of Asymptotic Simplification
+
+If
+T(n) = 4n² + 7n + 10
+then asymptotically T(n) = Θ(n²), because the n² term dominates for large n.
+
+---
+
+## 3. Common Time Complexities
 
 | Notation | Name | Example | Growth |
 |----------|------|---------|--------|
@@ -24,9 +70,9 @@ We express time complexity using **Big-O notation**, which describes the upper b
 
 ---
 
-## 3. Algorithms Covered in This Experiment
+## 4. Algorithms Covered in This Experiment
 
-### 3.1 Binary Search – O(log n)
+### 4.1 Binary Search – O(log n)
 
 Searches a **sorted array** by repeatedly dividing the search interval in half.
 
@@ -49,7 +95,7 @@ BinarySearch(arr, target):
 
 ---
 
-### 3.2 Linear Search – O(n)
+### 4.2 Linear Search – O(n)
 
 Searches an array by checking each element one by one.
 
@@ -66,7 +112,7 @@ LinearSearch(arr, target):
 
 ---
 
-### 3.3 Quick Sort – O(n log n) average
+### 4.3 Quick Sort – O(n log n) average
 
 Divides array using a pivot and recursively sorts partitions.
 
@@ -85,7 +131,7 @@ QuickSort(arr):
 
 ---
 
-### 3.4 Bubble Sort – O(n²)
+### 4.4 Bubble Sort – O(n²)
 
 Repeatedly swaps adjacent elements if they are in wrong order.
 
@@ -102,7 +148,7 @@ BubbleSort(arr):
 
 ---
 
-### 3.5 Matrix Addition – O(n²)
+### 4.5 Matrix Addition – O(n²)
 
 Adds two n×n matrices element by element.
 
@@ -119,7 +165,7 @@ MatrixAdd(A, B):
 
 ---
 
-### 3.6 Matrix Multiplication – O(n³)
+### 4.6 Matrix Multiplication – O(n³)
 
 Multiplies two n×n matrices using the standard algorithm.
 
@@ -138,7 +184,7 @@ MatrixMultiply(A, B):
 
 ---
 
-### 3.7 Subset Generation – O(2ⁿ)
+### 4.7 Subset Generation – O(2ⁿ)
 
 Generates all possible subsets of a set with n elements.
 
@@ -156,7 +202,7 @@ GenerateSubsets(arr, index, current):
 
 ---
 
-### 3.8 Permutation Generation – O(n!)
+### 4.8 Permutation Generation – O(n!)
 
 Generates all possible arrangements of n elements.
 
@@ -176,7 +222,7 @@ GeneratePermutations(arr, left):
 
 ---
 
-## 4. Comparison Table
+## 5. Comparison Table
 
 | Algorithm | Best Case | Average Case | Worst Case | Space |
 |-----------|-----------|--------------|------------|-------|
@@ -191,7 +237,7 @@ GeneratePermutations(arr, left):
 
 ---
 
-## 5. Key Takeaways
+## 6. Key Takeaways
 
 1. **Logarithmic algorithms** (Binary Search) are much faster than linear ones for large inputs.
 2. **O(n log n) sorting** algorithms like Quick Sort vastly outperform O(n²) algorithms like Bubble Sort.
