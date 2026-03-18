@@ -22,7 +22,7 @@
 #### Step 3: Set Simulation Time (Optional)
 
 1. Use the **"Max Simulation Time"** dropdown to limit how long each algorithm runs.
-2. Default is 5 second. Increase for larger inputs if needed.
+2. The default is 5 seconds. Increase this limit for larger inputs if needed.
 
 ---
 

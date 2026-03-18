@@ -38,18 +38,18 @@
     {
       "question": "Which sorting algorithm has O(n²) time complexity in the average case?",
       "answers": {
-        "a": "Quick Sort",
+        "a": "Bubble Sort",
         "b": "Merge Sort",
-        "c": "Bubble Sort",
+        "c": "Quick Sort",
         "d": "Heap Sort"
       },
       "explanations": {
-        "a": "Quick Sort has O(n log n) average case complexity.",
+        "a": "Correct! Bubble Sort uses two nested loops, resulting in O(n²) complexity.",
         "b": "Merge Sort has O(n log n) complexity in all cases.",
-        "c": "Correct! Bubble Sort uses two nested loops, resulting in O(n²) complexity.",
+        "c": "Quick Sort has O(n log n) average case complexity.",
         "d": "Heap Sort has O(n log n) complexity."
       },
-      "correctAnswer": "c",
+      "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
@@ -57,50 +57,50 @@
       "answers": {
         "a": "O(n)",
         "b": "O(n²)",
-        "c": "O(n³)",
-        "d": "O(2ⁿ)"
+        "c": "O(2ⁿ)",
+        "d": "O(n³)"
       },
       "explanations": {
         "a": "O(n) is linear, matrix multiplication requires more operations.",
         "b": "O(n²) is the complexity of matrix addition, not multiplication.",
-        "c": "Correct! Standard matrix multiplication uses three nested loops, giving O(n³).",
-        "d": "O(2ⁿ) is exponential, used in subset generation problems."
+        "c": "O(2ⁿ) is exponential, used in subset generation problems.",
+        "d": "Correct! Standard matrix multiplication uses three nested loops, giving O(n³)."
       },
-      "correctAnswer": "c",
+      "correctAnswer": "d",
       "difficulty": "intermediate"
     },
     {
       "question": "How many subsets can be generated from a set of n elements?",
       "answers": {
         "a": "n",
-        "b": "n²",
-        "c": "2ⁿ",
+        "b": "2ⁿ",
+        "c": "n²",
         "d": "n!"
       },
       "explanations": {
         "a": "n is just the number of elements, not subsets.",
-        "b": "n² is quadratic, not related to subset count.",
-        "c": "Correct! Each element can either be included or excluded, giving 2ⁿ subsets.",
+        "b": "Correct! Each element can either be included or excluded, giving 2ⁿ subsets.",
+        "c": "n² is quadratic, not related to subset count.",
         "d": "n! is the number of permutations, not subsets."
       },
-      "correctAnswer": "c",
+      "correctAnswer": "b",
       "difficulty": "intermediate"
     },
     {
       "question": "Which of the following has the fastest growth rate?",
       "answers": {
-        "a": "O(n log n)",
+        "a": "O(2ⁿ)",
         "b": "O(n²)",
-        "c": "O(2ⁿ)",
+        "c": "O(n log n)",
         "d": "O(n³)"
       },
       "explanations": {
-        "a": "O(n log n) grows slower than polynomial and exponential.",
+        "a": "Correct! Exponential O(2ⁿ) grows faster than any polynomial complexity.",
         "b": "O(n²) is polynomial, slower than exponential.",
-        "c": "Correct! Exponential O(2ⁿ) grows faster than any polynomial complexity.",
+        "c": "O(n log n) grows slower than polynomial and exponential.",
         "d": "O(n³) is polynomial, still slower than exponential."
       },
-      "correctAnswer": "c",
+      "correctAnswer": "a",
       "difficulty": "intermediate"
     },
     {

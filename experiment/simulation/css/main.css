@@ -5,14 +5,16 @@
   display: flex;
   justify-content: center;
   font-family: 'Times New Roman', Times, serif;
-  
+  width: 100%;
 }
 
 #container {
-  width: 1500px;
-  height: 900px;
+  width: min(1500px, 100%);
+  min-height: 900px;
+  height: auto;
   flex-direction: column;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 #header {
@@ -22,6 +24,8 @@
 
 #simulation {
   display: flex;
+  gap: 10px;
+  align-items: flex-start;
 }
 
 /* -------------------------------------------------
@@ -31,6 +35,7 @@
   display: flex;
   flex-direction: column;
   flex: 1.5;
+  min-width: 0;
 }
 
 #leftPane {
@@ -44,6 +49,7 @@
   border-radius: 6px;
   font-size: 16px;
   font-weight: 700;
+  box-sizing: border-box;
 }
 
 #complexity-info {
@@ -66,6 +72,7 @@
   align-items: center;
   flex-direction: column;
   gap: 15px;
+  min-width: 0;
 
 }
 
@@ -81,6 +88,8 @@
   border: 1px solid black;
   border-radius: 6px;
   margin-right: 10px;
+  min-width: 0;
+  box-sizing: border-box;
 
 }
 
@@ -127,7 +136,8 @@
 #clear {
   margin-top: 5px;
   padding: 8px 12px;
-  margin-left: 280px;
+  margin-left: auto;
+  display: block;
   background: #d9534f;
   color: #fff;
   border: none;
@@ -169,6 +179,8 @@
   display: flex;
   margin-top: 50px;
   gap: 75px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 #next-btn{
@@ -207,16 +219,17 @@
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  max-width: 600px;
+  max-width: 100%;
 }
 
 #selected-algorithms {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  max-width: 500px;
+  max-width: 100%;
   border: 1px solid black;
-  padding:5px
+  padding:5px;
+  box-sizing: border-box;
 }
 
 #custom-div{
@@ -231,7 +244,7 @@
 #n-selector {
   display: flex;
   flex-direction: column;
-  max-width: 200px;
+  max-width: 100%;
 }
 
 #max-time {
@@ -245,6 +258,17 @@
 #radio-div{
   display: flex;
   flex-direction: column;
+}
+
+#graph-canvas {
+  width: 100% !important;
+  max-width: 100%;
+  height: auto !important;
+  display: block;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 /* -------------------------------------------------
@@ -386,4 +410,102 @@ th, td {
 ------------------------------------------------- */
 [hidden] {
   display: none !important;
+}
+
+/* -------------------------------------------------
+   RESPONSIVE LAYOUT (TABLETS / PHONES)
+------------------------------------------------- */
+@media (max-width: 1200px) {
+  #container {
+    min-height: auto;
+    padding: 0 8px 12px;
+  }
+
+  #simulation {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  #leftPaneWrapper,
+  #middlePane,
+  #rightPane {
+    width: 100%;
+    flex: none;
+    margin: 0;
+  }
+
+  #leftPane {
+    margin: 0;
+  }
+
+  #complexity-info {
+    margin-left: 0;
+  }
+
+  #middlePane {
+    padding: 0;
+    gap: 10px;
+  }
+
+  #rightPane {
+    min-height: 320px;
+  }
+
+  #steps-div {
+    margin-top: 20px;
+    gap: 14px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  #header h2 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+
+  #leftPane,
+  #rightPane {
+    padding: 10px;
+  }
+
+  #available-algorithms button,
+  #custom-div button {
+    width: 100%;
+    text-align: left;
+  }
+
+  #steps-div {
+    width: 100%;
+    gap: 10px;
+  }
+
+  #prev-btn,
+  #next-btn,
+  #run {
+    width: 100%;
+  }
+
+  #radio-div {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+  }
+
+  #radio-div label {
+    min-width: 88px;
+  }
+
+  th,
+  td {
+    padding: 8px;
+    min-width: 70px;
+  }
+
+  #status {
+    font-size: 16px;
+  }
 }

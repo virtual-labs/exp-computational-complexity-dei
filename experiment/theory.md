@@ -3,6 +3,8 @@
 
 **Time complexity** measures how the running time of an algorithm increases as the input size (n) grows. It helps us compare algorithms and predict their performance for large inputs.
 
+**n** denotes the **size of the input** (for example, number of elements in an array, or dimension of an n×n matrix).
+
 For large inputs, we study growth using **asymptotic analysis**.
 
 ---
@@ -55,7 +57,7 @@ then asymptotically T(n) = Θ(n²), because the n² term dominates for large n.
 
 ## 3. Common Time Complexities
 
-| Notation | Name | Example | Growth |
+| Notation | Name | Example | Running Time |
 |----------|------|---------|--------|
 | O(1) | Constant | Array access | Fastest |
 | O(log n) | Logarithmic | Binary Search | Very Fast |
@@ -66,7 +68,7 @@ then asymptotically T(n) = Θ(n²), because the n² term dominates for large n.
 | O(2ⁿ) | Exponential | Subset Generation | Extremely Slow |
 | O(n!) | Factorial | Permutation Generation | Impractical |
 
-![Big O Complexity Chart](images/big_o_chart2.png)
+![Big O Complexity Chart](images/tc-flow.png)
 
 ---
 
@@ -79,9 +81,10 @@ Searches a **sorted array** by repeatedly dividing the search interval in half.
 **Pseudocode:**
 ```
 BinarySearch(arr, target):
-    left = 0, right = n - 1
+    left = 0
+    right = n - 1
     while left <= right:
-        mid = (left + right) / 2
+        mid = left + (right - left) // 2
         if arr[mid] == target:
             return mid
         else if arr[mid] < target:
@@ -118,13 +121,23 @@ Divides array using a pivot and recursively sorts partitions.
 
 **Pseudocode:**
 ```
-QuickSort(arr):
-    if length(arr) <= 1:
-        return arr
-    pivot = arr[last]
-    left = elements < pivot
-    right = elements >= pivot
-    return QuickSort(left) + pivot + QuickSort(right)
+QuickSort(arr, low, high):
+    if low < high:
+        p = Partition(arr, low, high)
+        QuickSort(arr, low, p - 1)
+        QuickSort(arr, p + 1, high)
+
+// Initial call: QuickSort(arr, 0, n - 1)
+
+Partition(arr, low, high):
+    pivot = arr[high]
+    i = low - 1
+    for j = low to high - 1:
+        if arr[j] <= pivot:
+            i = i + 1
+            swap(arr[i], arr[j])
+    swap(arr[i + 1], arr[high])
+    return i + 1
 ```
 
 **Why O(n log n)?** Each partition takes O(n), and there are O(log n) levels of recursion on average.
@@ -138,8 +151,8 @@ Repeatedly swaps adjacent elements if they are in wrong order.
 **Pseudocode:**
 ```
 BubbleSort(arr):
-    for i = 0 to n - 1:
-        for j = 0 to n - i - 1:
+    for i = 0 to n - 2:
+        for j = 0 to n - i - 2:
             if arr[j] > arr[j + 1]:
                 swap(arr[j], arr[j + 1])
 ```
@@ -194,8 +207,8 @@ GenerateSubsets(arr, index, current):
     if index == n:
         output current subset
         return
-    GenerateSubsets(arr, index + 1, current)           // exclude
-    GenerateSubsets(arr, index + 1, current + arr[index])  // include
+    GenerateSubsets(arr, index + 1, current)                       // exclude
+    GenerateSubsets(arr, index + 1, current ∪ {arr[index]})        // include
 ```
 
 **Why O(2ⁿ)?** Each element has 2 choices (include/exclude), giving 2ⁿ subsets.

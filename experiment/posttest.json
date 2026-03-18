@@ -21,18 +21,18 @@
     {
       "question": "Based on the simulation graph, which sorting algorithm's execution time grows faster as input size increases?",
       "answers": {
-        "a": "Quick Sort",
-        "b": "Bubble Sort",
+        "a": "Bubble Sort",
+        "b": "Quick Sort",
         "c": "Both grow at the same rate",
-        "d": "Quick Sort grows faster"
+        "d": "The trend cannot be determined from the graph"
       },
       "explanations": {
-        "a": "Quick Sort has O(n log n) complexity, which grows slower.",
-        "b": "Correct! Bubble Sort's O(n²) complexity makes its curve steeper than Quick Sort's O(n log n) curve.",
+        "a": "Correct! Bubble Sort's O(n²) complexity makes its curve steeper than Quick Sort's O(n log n) curve.",
+        "b": "Quick Sort has O(n log n) complexity, which grows slower.",
         "c": "The growth rates are different - O(n²) vs O(n log n).",
-        "d": "Quick Sort actually grows slower due to its better time complexity."
+        "d": "The graph does provide enough information to compare growth trends."
       },
-      "correctAnswer": "b",
+      "correctAnswer": "a",
       "difficulty": "intermediate"
     },
     {
@@ -40,16 +40,16 @@
       "answers": {
         "a": "Matrix Multiplication uses less memory",
         "b": "Matrix Addition is O(n³) while Multiplication is O(n²)",
-        "c": "Matrix Multiplication is O(n³) while Addition is O(n²)",
-        "d": "Both have the same time complexity"
+        "c": "Both have the same time complexity",
+        "d": "Matrix Multiplication is O(n³) while Addition is O(n²)"
       },
       "explanations": {
         "a": "Memory usage is similar, but time complexity differs.",
         "b": "This is backwards - Addition is O(n²), Multiplication is O(n³).",
-        "c": "Correct! Matrix Multiplication requires three nested loops O(n³), making it much slower than Addition's O(n²).",
-        "d": "Their complexities are different: O(n²) vs O(n³)."
+        "c": "Their complexities are different: O(n²) vs O(n³).",
+        "d": "Correct! Matrix Multiplication requires three nested loops O(n³), making it much slower than Addition's O(n²)."
       },
-      "correctAnswer": "c",
+      "correctAnswer": "d",
       "difficulty": "intermediate"
     },
     {
@@ -73,51 +73,51 @@
       "question": "What does the simulation's execution time table help you understand?",
       "answers": {
         "a": "Only the fastest algorithm",
-        "b": "How execution time changes for different input sizes across algorithms",
-        "c": "The memory usage of each algorithm",
+        "b": "The memory usage of each algorithm",
+        "c": "How execution time changes for different input sizes across algorithms",
         "d": "The number of lines of code in each algorithm"
       },
       "explanations": {
         "a": "The table shows more than just the fastest algorithm.",
-        "b": "Correct! The table displays execution times for multiple N values, allowing you to observe how different algorithms scale.",
-        "c": "Memory usage is not displayed in the table.",
+        "b": "Memory usage is not displayed in the table.",
+        "c": "Correct! The table displays execution times for multiple N values, allowing you to observe how different algorithms scale.",
         "d": "Code length is not shown in the simulation."
       },
-      "correctAnswer": "b",
+      "correctAnswer": "c",
       "difficulty": "beginner"
     },
     {
       "question": "In the simulation, Permutation Generation has an even lower N limit than Subset Generation. Why?",
       "answers": {
-        "a": "Permutations are easier to generate",
-        "b": "O(n!) grows faster than O(2ⁿ)",
+        "a": "O(n!) grows faster than O(2ⁿ)",
+        "b": "Permutations are easier to generate",
         "c": "O(2ⁿ) grows faster than O(n!)",
         "d": "Both have the same complexity"
       },
       "explanations": {
-        "a": "Permutations are actually harder due to factorial complexity.",
-        "b": "Correct! For n = 10, n! = 3,628,800 while 2ⁿ = 1,024. Factorial grows much faster than exponential.",
+        "a": "Correct! For n = 10, n! = 3,628,800 while 2ⁿ = 1,024. Factorial grows much faster than exponential.",
+        "b": "Permutations are actually harder due to factorial complexity.",
         "c": "Factorial O(n!) grows faster than exponential O(2ⁿ) for practical values of n.",
         "d": "O(n!) and O(2ⁿ) are different, with factorial being worse."
       },
-      "correctAnswer": "b",
+      "correctAnswer": "a",
       "difficulty": "advanced"
     },
     {
       "question": "What is the purpose of the 'Max Simulation Time' setting in the simulation?",
       "answers": {
         "a": "To make algorithms run faster",
-        "b": "To limit how long each algorithm can run before stopping",
+        "b": "To change the algorithm implementation",
         "c": "To increase the accuracy of results",
-        "d": "To change the algorithm implementation"
+        "d": "To limit how long each algorithm can run before stopping"
       },
       "explanations": {
         "a": "It doesn't speed up algorithms, it limits their execution time.",
-        "b": "Correct! It prevents the browser from freezing by stopping algorithms that take too long.",
+        "b": "The algorithm implementations remain the same.",
         "c": "It's for time management, not accuracy improvement.",
-        "d": "The algorithm implementations remain the same."
+        "d": "Correct! It prevents the browser from freezing by stopping algorithms that take too long."
       },
-      "correctAnswer": "b",
+      "correctAnswer": "d",
       "difficulty": "beginner"
     },
     {
