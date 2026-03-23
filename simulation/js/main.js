@@ -143,6 +143,7 @@ const reset = () => {
   getElement('complexity-info').innerHTML = '';
 
   graphContent = {};
+  operationContent = {};
 
   const canvas = document.getElementById("graph-canvas");
   const ctx = canvas.getContext("2d");
@@ -407,6 +408,83 @@ getElement("n-selector").addEventListener("change", function (e) {
 });
 
 var graphContent = {};
+var operationContent = {};
+
+const comparisonBasedAlgorithms = new Set(["a1", "a2", "a3", "a4"]);
+
+const formatNumber = (value) => {
+  return Number(value).toLocaleString("en-IN");
+};
+
+const formatExecutionTime = (timeInMs) => {
+  return `${Number(timeInMs).toFixed(4)} ms`;
+};
+
+const isComparisonBasedAlgorithm = (algo) => {
+  return comparisonBasedAlgorithms.has(algo);
+};
+
+const factorial = (num) => {
+  if (num <= 1) return 1;
+  let result = 1;
+  for (let i = 2; i <= num; i++) {
+    result *= i;
+  }
+  return result;
+};
+
+const estimateOperationCount = (algo, size) => {
+  switch (algo) {
+    // Comparison-based algorithms
+    case "a1": {
+      // Binary search for a guaranteed-missing element (-1) in sorted non-negative array
+      let left = 0;
+      let right = size - 1;
+      let comparisons = 0;
+
+      while (left <= right) {
+        const mid = Math.floor((left + right) / 2);
+        comparisons += 1; // arr[mid] === x
+        comparisons += 1; // arr[mid] < x
+        right = mid - 1; // x is -1, always smaller than all array values
+      }
+
+      return comparisons;
+    }
+
+    case "a2":
+      // Linear search with guaranteed-missing target performs n element comparisons
+      return size;
+
+    case "a3":
+      // Average-case quicksort comparisons ≈ n log2(n)
+      return Math.max(1, Math.round(size * Math.log2(size)));
+
+    case "a4":
+      // Bubble sort comparisons in nested loops: n(n-1)/2
+      return Math.round((size * (size - 1)) / 2);
+
+    // Computation-based algorithms
+    case "a5":
+      // Matrix addition: one addition per output cell
+      return size * size;
+
+    case "a6":
+      // Matrix multiplication loop body does 1 multiplication + 1 addition
+      return 2 * size * size * size;
+
+    case "a7":
+      // Subset generation recursion tree nodes: 2^(n+1)-1
+      return Math.pow(2, size + 1) - 1;
+
+    case "a8":
+      // Permutation generation: rough operation count proportional to n * n!
+      return size * factorial(size);
+
+    default:
+      return 0;
+  }
+};
 
 
 const runAlgo = async () => {
@@ -417,6 +495,7 @@ const runAlgo = async () => {
   ];
 
   graphContent = {};
+  operationContent = {};
   getElement("steps-div").hidden = true;
   getElement("run").disabled = true;
 
@@ -438,11 +517,13 @@ const runAlgo = async () => {
 
         // Init graph content if needed
         graphContent[algo] = graphContent[algo] || [[], []];
+        operationContent[algo] = operationContent[algo] || [];
 
         // Push values
         if (time !== null && time < (max_simulation_time * 1000) + 0.002) {
           graphContent[algo][0].push(size);
           graphContent[algo][1].push(time);
+          operationContent[algo].push(estimateOperationCount(algo, size));
         }
 
         // Table update
@@ -451,7 +532,7 @@ const runAlgo = async () => {
           getElement(id).innerText = "Time/Memory Limit";
         }
         else {
-          getElement(id).innerText = Number(time).toFixed(5);
+          getElement(id).innerText = Number(time).toFixed(4);
         }
       }
     }
@@ -481,11 +562,12 @@ function convertToDataset() {
   for (let algo in graphContent) {
     const xVals = graphContent[algo][0];
     const yVals = graphContent[algo][1];
+    const opVals = operationContent[algo] || [];
 
     // Create points array with x and y paired together
     let points = [];
     xVals.forEach((x, i) => {
-      points.push({ x: x, y: Number(yVals[i]) });
+      points.push({ x: x, y: Number(yVals[i]), ops: opVals[i] ?? 0 });
     });
 
     // Sort points by x (input size n) to ensure correct ordering
@@ -499,10 +581,11 @@ function convertToDataset() {
         y = prevY + 0.001;
       }
       prevY = y;
-      return { x: point.x, y: y };
+      return { x: point.x, y: y, ops: point.ops };
     });
 
     datasets.push({
+      algoKey: algo,
       label: algorithmsMapping[algo],
       data: points,
       borderColor: colors[index % colors.length],
@@ -565,7 +648,11 @@ function plotGraph() {
       }
       return 5;
     }),
-    pointHoverRadius: 5,
+    pointHitRadius: 12,
+    pointHoverRadius: 10,
+    pointHoverBorderWidth: 3,
+    pointHoverBackgroundColor: "#ffffff",
+    pointHoverBorderColor: ds.borderColor,
     borderWidth: 2,
     tension: 0.35,
   }));
@@ -576,21 +663,71 @@ function plotGraph() {
     data: { datasets },
     options: {
       responsive: true,
+      onHover: (_event, activeElements, chart) => {
+        const hoveredDatasetIndex = activeElements.length
+          ? activeElements[0].datasetIndex
+          : null;
+
+        if (chart.$hoveredDatasetIndex !== hoveredDatasetIndex) {
+          chart.$hoveredDatasetIndex = hoveredDatasetIndex;
+          chart.update("none");
+        }
+      },
 
       plugins: {
         legend: {
           labels: {
-            color: "#000000ff",
             font: { size: 13 },
             usePointStyle: true,
+            generateLabels: (chart) => {
+              const defaultLabels = Chart.defaults.plugins.legend.labels.generateLabels(chart);
+              const hovered = chart.$hoveredDatasetIndex;
+
+              return defaultLabels.map((label, idx) => {
+                if (hovered === null || hovered === undefined) {
+                  return {
+                    ...label,
+                    fontColor: "#000000ff",
+                    text: label.text,
+                  };
+                }
+
+                const isActive = idx === hovered;
+                return {
+                  ...label,
+                  fontColor: isActive ? "#d62828" : "#7a7a7a",
+                  text: isActive ? `➤ ${label.text}` : label.text,
+                };
+              });
+            },
           },
         },
         tooltip: {
           backgroundColor: "#ffffff",
           titleColor: "#000",
           bodyColor: "#000",
+          displayColors: false,
           borderColor: "#000",
           borderWidth: 1,
+          callbacks: {
+            title: (tooltipItems) => {
+              if (!tooltipItems.length) return "";
+              const point = tooltipItems[0].raw;
+              return `n = ${formatNumber(point.x)}`;
+            },
+            label: (context) => {
+              const point = context.raw;
+              const algoKey = context.dataset.algoKey;
+              const metricLabel = isComparisonBasedAlgorithm(algoKey)
+                ? "Comparisons"
+                : "Computations";
+
+              return [
+                `ET = ${formatExecutionTime(point.y)}`,
+                `${metricLabel} = ${formatNumber(point.ops)}`,
+              ];
+            },
+          },
         },
       },
 

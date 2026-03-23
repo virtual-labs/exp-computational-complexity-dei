@@ -1,1 +1,1 @@
-1. Introduction to Algorithms by Thomas H. Cormen & Charles E. Leiserson
+1. R. Sedgewick and K. Wayne, Algorithms, 4th Edition (2022), Addison-Wesley (Chapter 3, Searching)
